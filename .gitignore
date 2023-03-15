@@ -20,6 +20,9 @@ lib
 lib64
 .cache
 
+# config file
+config.py
+
 # Installer logs
 pip-log.txt
 
