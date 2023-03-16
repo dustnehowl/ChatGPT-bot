@@ -14,7 +14,7 @@ parser.add_argument('event')
 app.config.from_object('config.Config')
 client = WebClient(token=app.config['OAUTH_TOKEN'])
 openai_key = app.config['OPENAI_KEY']
-
+SLACK_BOT_TOKEN = app.config['OAUTH_TOKEN']
 
 class HelloWorld(Resource):
     def get(self):
