@@ -23,9 +23,11 @@ class HelloWorld(Resource):
 class TestAPI(Resource):
     def get(self):
         data = request.get_json()
+        print(data['challenge'])
         return {'test': 'success'}
     def post(self):
         data = request.get_json()
+        print(data['challenge'])
         return {'post' : 'successToo!'}
     
 class SlackBot(Resource):
