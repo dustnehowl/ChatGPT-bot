@@ -29,6 +29,8 @@ class TestAPI(Resource):
 class SlackBot(Resource):
     def post(self):
         data = request.get_json()
+        if 'challenge' in data:
+            return {'challenge' : data['challenge']}
         if data['token'] == SLACK_BOT_TOKEN:
             text = data['text']
             response = "Hello, " + text
