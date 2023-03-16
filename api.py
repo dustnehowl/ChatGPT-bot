@@ -50,7 +50,7 @@ class SlackBot(Resource):
 
 api.add_resource(HelloWorld, '/')
 api.add_resource(TestAPI, '/test')
-api.add_resource(SlackBot, '/slack/events')
+api.add_resource(SlackBot, '/slack/events2')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
