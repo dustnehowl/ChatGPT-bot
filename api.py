@@ -36,23 +36,21 @@ class SlackBot(Resource):
         print(data['token'])
         if 'challenge' in data:
             return {'challenge' : data['challenge']}
-        if data['token'] == SLACK_BOT_TOKEN:
-            text = data['text']
-            response = "Hello, " + text
-            return {'text': response}
+        text = data['text']
+        response = "Hello, " + text
+        return {'text': response}
     def get(self):
         data = request.get_json()
         print(data['token'])
         if 'challenge' in data:
             return {'challenge' : data['challenge']}
-        if data['token'] == SLACK_BOT_TOKEN:
-            text = data['text']
-            response = "Hello, " + text
-            return {'text': response}
+        text = data['text']
+        response = "Hello, " + text
+        return {'text': response}
 
 api.add_resource(HelloWorld, '/')
 api.add_resource(TestAPI, '/test')
-api.add_resource(SlackBot, '/slackbot')
+api.add_resource(SlackBot, '/slack/events')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
