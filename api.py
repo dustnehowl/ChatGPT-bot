@@ -30,6 +30,7 @@ class BotAPI(Resource):
     def post(self):
         print("문장을 생성합니다.")
         data = request.json
+        print(data)
         if "challenge" in data:
             return jsonify({"challenge": data["challenge"]})
         elif "event" in data:
