@@ -26,34 +26,17 @@ class TestAPI(Resource):
     def post(self):
         return {'post' : 'successToo!'}
     
-class BotAPI(Resource):
+class SlackBot(Resource):
     def post(self):
-        print("문장을 생성합니다.")
-        data = request.json
-        print(data)
-        if "challenge" in data:
-            return jsonify({"challenge": data["challenge"]})
-        elif "event" in data:
-            event = data["event"]
-            if event["type"] == "message" and "bot_id" not in event:
-                text = event["text"]
-                channel_id = event["channel"]
-                user_id = event["user"]
-                # chatgpt_response = chatTest(text)
-                try:
-                    client.chat_postMessage(
-                        channel=channel_id,
-                        text=f"{text}"
-                    )
-                    print("문장 생성을 완료했습니다.")
-                except SlackApiError as e:
-                    print("Error sending message: {}".format(e))
-                return jsonify({})
-        return jsonify({})
+        data = request.get_json()
+        if data['token'] == SLACK_BOT_TOKEN:
+            text = data['text']
+            response = "Hello, " + text
+            return {'text': response}
 
 api.add_resource(HelloWorld, '/')
 api.add_resource(TestAPI, '/test')
-api.add_resource(BotAPI, '/slack/events')
+api.add_resource(SlackBot, '/slackbot')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
